@@ -6,7 +6,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 
-
 class Book(db.Model):
     Column = db.Column
     Integer = db.Integer
