@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-key = os.getenv('basilica_key')
+key = os.getenv("basilica_key")
 
 
 with basilica.Connection(key) as c:
