@@ -21,16 +21,16 @@ class Book(db.Model):
 
 
 class User(Model):
-    id = (Column(BigInteger, primary_key=True),)
+    id = (Column(BigInteger, primary_key=True))
     screen_name = Column(String(128), nullable=False)
     location = Column(String(128))
     followers_count = Column(Integer)
 
 
 class Tweet(Model):
-    id = (Column(BigInteger, primary_key=True),)
-    user_id = Column(BigInteger, db.foreign_key("user.id"))
-    full_text = (Column(String(500)),)
+    id = (Column(BigInteger, primary_key=True))
+    user_id = Column(BigInteger, db.ForeignKey("user.id"))
+    full_text = (Column(String(500)))
     embedding = Column(db.PickleType)
 
     user = db.relationship("User", backref=db.backref("tweets", lazy=True))
