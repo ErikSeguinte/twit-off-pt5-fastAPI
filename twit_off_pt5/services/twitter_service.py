@@ -14,8 +14,9 @@ auth.set_access_token(access, access_secret)
 
 api = tweepy.API(auth)
 
-user = api.get_user("primefactorx01")
-print(type(user))
+if __name__ == '__main__':
+    user = api.get_user("primefactorx01")
+    print(type(user))
 
-tweets = api.user_timeline("primefactorx01", tweet_mode="extended", exclude_replies=True, exclude_retweets=True)
-breakpoint()
+    tweets = api.user_timeline("primefactorx01", tweet_mode="extended", exclude_replies=True, exclude_retweets=True)
+    breakpoint()

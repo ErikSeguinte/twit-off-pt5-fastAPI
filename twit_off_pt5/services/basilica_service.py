@@ -5,8 +5,5 @@ load_dotenv()
 
 key = os.getenv("basilica_key")
 
+connection = basilica.Connection(key)
 
-with basilica.Connection(key) as c:
-    embeddings = c.embed_sentences(["Hello world!", "How are you?"])
-    breakpoint()
-    print(list(embeddings))  # [[0.8556405305862427, ...], ...]
