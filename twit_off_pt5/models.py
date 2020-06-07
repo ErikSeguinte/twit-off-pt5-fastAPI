@@ -4,12 +4,12 @@ from pathlib import Path
 
 db = SQLAlchemy()
 migrate = Migrate()
+Column = db.Column
+Integer = db.Integer
+String = db.String
 
 
 class Book(db.Model):
-    Column = db.Column
-    Integer = db.Integer
-    String = db.String
     id = Column(Integer, primary_key=True)
     title = Column(String(128))
     author_id = Column(String(128))
