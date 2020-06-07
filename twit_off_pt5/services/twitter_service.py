@@ -16,4 +16,6 @@ api = tweepy.API(auth)
 
 user = api.get_user("primefactorx01")
 print(type(user))
+
+tweets = api.user_timeline("primefactorx01", tweet_mode="extended", exclude_replies=True, exclude_retweets=True)
 breakpoint()
