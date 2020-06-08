@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}
-    <title>My Starter Web App | Helps students learn how to use the Flask Python package.</title>
+        <title>My Starter Web App | Helps students learn how to use the Flask Python package.</title>
     {% endblock %}
 
 
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/bulma.css')}}" media="all"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bulma.css') }}" media="all"/>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -22,13 +22,15 @@
     <nav>
         <div>
             {% block nav %}
-            <div class="navbar">
-                <div class="navbar-menu">
-                    <a class="navbar-item" href="/books">Books Page</a>
-                    <a class="navbar-item" href="/books/new">New Book Form</a>
-                    <a class="navbar-item" href="/users">Users</a>
+                <div class="navbar">
+                    <div class="navbar-menu">
+                        <div class="navbar-start">
+                            <a class="navbar-item" href="/books">Books Page</a>
+                            <a class="navbar-item" href="/books/new">New Book Form</a>
+                            <a class="navbar-item" href="/users">Users</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
             {% endblock %}
 
         </div>
