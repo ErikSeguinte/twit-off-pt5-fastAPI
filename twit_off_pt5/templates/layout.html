@@ -19,25 +19,28 @@
 <!-- SITE NAVIGATION -->
 <div class="container">
     <h1 class="title"><a href="/">My Web App</a></h1>
-    <nav>
         <div>
             {% block nav %}
-                <div class="navbar">
-                    <div class="navbar-menu">
+                <nav class="navbar is-success">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
+                            <strong>HOME</strong>
+                        </a>
+                    </div>
+                    <div id="navbarBasic" class="navbar-menu is-active">
                         <div class="navbar-start">
                             <a class="navbar-item" href="/books">Books Page</a>
                             <a class="navbar-item" href="/books/new">New Book Form</a>
                             <a class="navbar-item" href="/users">Users</a>
                         </div>
+                        <div class="navbar-end"></div>
                     </div>
-                </div>
+                </nav>
             {% endblock %}
 
         </div>
-    </nav>
 
 
-    <hr>
 
     <!-- PAGE CONTENTS -->
     <div id="content" class="content">
@@ -46,11 +49,11 @@
     </div>
 
     <!-- FOOTER -->
-    <div id="footer">
+    <footer id="footer" class="footer">
         <hr>
-        &copy; Copyright 2020 [Erik Seguinte] |
+        &copy; Copyright 2020 Erik Seguinte |
         <a href="https://github.com/erikseguinte/">source</a>
-    </div>
+    </footer>
 </div>
 
 </body>
