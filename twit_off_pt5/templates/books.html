@@ -7,20 +7,21 @@
 {% endblock %}
 
 {% block content %}
+    <div class="section">
 
-    <h2>Welcome to the Books Page</h2>
+        <h2>Welcome to the Books Page</h2>
 
-    <p>{{ message }}</p>
+        <p>{{ message }}</p>
 
-    {% if books %}
-        <ul>
-        {% for book in books %}
-            <li>{{ book["title"] }}</li>
-        {% endfor %}
-        </ul>
+        {% if books %}
+            <ul>
+                {% for book in books %}
+                    <li>{{ book["title"] }}</li>
+                {% endfor %}
+            </ul>
 
-    {% else %}
-        <p>Books not found.</p>
-    {% endif %}
-
+        {% else %}
+            <p>Books not found.</p>
+        {% endif %}
+    </div>
 {% endblock %}

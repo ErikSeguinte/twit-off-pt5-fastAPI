@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, redirect, url_for
 
 home_routes = Blueprint("home_routes", __name__)
 
@@ -6,7 +6,7 @@ home_routes = Blueprint("home_routes", __name__)
 @home_routes.route("/")
 def index():
     x = 2+2
-    return f"Hello World! {x}"
+    return redirect(url_for('book_routes.list_books_for_humans'))
 
 @home_routes.route("/about")
 def about():
