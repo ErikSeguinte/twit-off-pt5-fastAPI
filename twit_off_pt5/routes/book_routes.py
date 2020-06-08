@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, url_for, redirect
 from twit_off_pt5.models import db, Book, parse_records
 
 book_routes = Blueprint("book_routes", __name__)
@@ -27,7 +27,6 @@ def new_book():
 def create_book():
     print("FORM DATA:", dict(request.form))
 
-    breakpoint()
     data = request.form
 
     new_book = Book(title=data["title"], author_id=data["author_id"])
@@ -35,4 +34,4 @@ def create_book():
     db.session.add(new_book)
     db.session.commit()
 
-    return jsonify({"message": "BOOK CREATED OK (TODO)", "book": dict(request.form)})
+    return redirect(url_for('book_routes.list_books_for_humans'))
