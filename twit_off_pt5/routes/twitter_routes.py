@@ -37,5 +37,6 @@ def get_user(screen_name=None):
             db_tweet.embedding = embedding
             db.session.add(db_tweet)
     db.session.commit()
-
-    return "OK"
+    return render_template(
+        "user.html", user=db_user, tweets=statuses
+    )  # tweets=db_tweets
