@@ -25,5 +25,17 @@ def get_user(screen_name=None):
     db_user.location = user.location
     db_user.followers_count = user.followers_count
     db.session.add(db_user)
+
+    all_tweet_texts = [status.full_text for status in statuses]
+    embeddings = list(basilica.embed_sentences(all_tweet_texts, model="twitter"))
+
+    for status, embedding in zip(statuses, embeddings):
+        if not Tweet.query.get(status.id):
+            db_tweet = Tweet(id=status.id)
+            db_tweet.user_id = db_user.id
+            db_tweet.full_text = status.full_text
+            db_tweet.embedding = embedding
+            db.session.add(db_tweet)
     db.session.commit()
+
     return "OK"
