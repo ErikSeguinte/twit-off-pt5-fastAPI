@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>New Book Page</h1>
+
+{% extends "layout.html" %}
+
+{% block title %}
+<title>New Book Form</title>
+{% endblock %}
+
+{% block content %}
+    <h2>New Book Page</h2>
 
     <p>Please fill out the form and submit to create a new book!</p>
 
-    <form action="/books/create" method="POST">
+    <form action="/books/create" method="POST" class=>
       <label>Title:</label>
-      <input type="text" name="title" placeholder="Book XYZ" value="Book XYZ" />
+      <input class="input" type="text" name="title" placeholder="Book XYZ" value="Book XYZ" />
 
       <label>Author:</label>
-      <select name="author_id">
+      <select class="select" name = author_id">
         <option value="A1">Author 1</option>
         <option value="A2">Author 2</option>
         <option value="A3">Author 3</option>
       </select>
 
-      <button>Submit</button>
+      <button class="button is-primary">Submit</button>
     </form>
-  </body>
-</html>
+
+{% endblock %}

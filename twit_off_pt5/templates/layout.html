@@ -3,29 +3,32 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}
     <title>My Starter Web App | Helps students learn how to use the Flask Python package.</title>
     {% endblock %}
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="{{url_for('static', filename='js/kickstart.js')}}"></script> <!-- KICKSTART -->
-    <link rel="stylesheet" href="{{url_for('static', filename = 'css/kickstart.css')}}" media="all"/> <!-- KICKSTART -->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/bulma.css')}}" media="all"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
 
 <!-- SITE NAVIGATION -->
 <div class="container">
-    <h1><a href="/">My Web App</a></h1>
+    <h1 class="title"><a href="/">My Web App</a></h1>
     <nav>
         <div>
             {% block nav %}
-            <ul class="menu">
-                <li><a href="/books">Books Page</a></li>
-                <li><a href="/books/new">New Book Form</a></li>
-                <li><a href="/users">Users</a></li>
-            </ul>
+            <div class="navbar">
+                <div class="navbar-menu">
+                    <a class="navbar-item" href="/books">Books Page</a>
+                    <a class="navbar-item" href="/books/new">New Book Form</a>
+                    <a class="navbar-item" href="/users">Users</a>
+                </div>
+            </div>
             {% endblock %}
 
         </div>
@@ -35,7 +38,7 @@
     <hr>
 
     <!-- PAGE CONTENTS -->
-    <div id="content">
+    <div id="content" class="content">
         {% block content %}
         {% endblock %}
     </div>
