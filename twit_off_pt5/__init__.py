@@ -6,6 +6,7 @@ from pathlib import Path
 from twit_off_pt5.routes.home_routes import home_routes
 from twit_off_pt5.routes.book_routes import book_routes
 from twit_off_pt5.routes.twitter_routes import twitter_routes
+from twit_off_pt5.routes.admin_routes import admin_routes
 from twit_off_pt5.core.models import db, migrate
 
 db_path = Path("web_app.db")
@@ -23,6 +24,7 @@ def create_app():
     app.register_blueprint(home_routes)
     app.register_blueprint(book_routes)
     app.register_blueprint(twitter_routes)
+    app.register_blueprint(admin_routes)
     return app
 
 
