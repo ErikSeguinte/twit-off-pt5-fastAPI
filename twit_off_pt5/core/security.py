@@ -4,6 +4,7 @@ import secrets
 # import the CryptContext class, used to handle all hashing...
 #
 from passlib.context import CryptContext
+from twit_off_pt5.core.models import Admin, db
 
 #
 # create a single global instance for your app...
@@ -27,3 +28,15 @@ pwd_context = CryptContext(
 def create_api_key():
     key = secrets.token_urlsafe()
     return key
+
+
+def _create_admin():
+    key = create_api_key()
+    admin = Admin(username="admin", api_key = pwd_context.hash(key))
+    db.session.add(admin)
+    db.session.commit()
+    return key
+
+
+
+

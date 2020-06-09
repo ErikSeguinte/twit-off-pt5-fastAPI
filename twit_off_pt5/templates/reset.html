@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block subtitle %}
+    <h3 class="subtitle">Admin</h3>
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <form action="/admin/db/reset" method="post">
+            <div class="field">
+                <label class="label" for="username"> Username (case insensitive)</label>
+                <div class="control">
+                    <input class="input" type="text" name="username">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="api_key"> api key</label>
+                <div class="control">
+                    <input class="input" type="text" name="api_key">
+                </div>
+            </div>
+            <div class="control">
+                <button class="button">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    </div>
+{% endblock %}
