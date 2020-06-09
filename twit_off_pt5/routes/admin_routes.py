@@ -24,5 +24,14 @@ def reset():
     db_user = Admin.query.get(data['username'].lower())
     if db_user:
         if pwd_context.verify(data["api_key"], db_user.api_key):
-            return("RESETTING DB")
+            admin_hash = Admin.query.get("admin").api_key
+
+            db.drop_all()
+            db.create_all()
+            db.session.commit()
+            admin_account = Admin(username="admin", api_key = admin_hash)
+            db.session.add(admin_account)
+            db.session.commit()
+            return jsonify({'message' :"db reset OK"})
+            
     abort(403)
