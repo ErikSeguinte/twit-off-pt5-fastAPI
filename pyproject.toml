@@ -18,6 +18,7 @@ pyopenssl = "^19.1.0"
 secrets = "^1.0.2"
 passlib = "^1.7.2"
 argon2_cffi = "^20.1.0"
+sklearn = "^0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
