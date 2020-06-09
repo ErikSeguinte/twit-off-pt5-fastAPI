@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, render_template, url_for, redirect
-from twit_off_pt5.models import db, Book, parse_records
+from core.models import db, Book, parse_records
 
 book_routes = Blueprint("book_routes", __name__)
 
