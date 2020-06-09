@@ -20,4 +20,9 @@ def reset_page():
 
 @admin_routes.route("/admin/db/reset", methods=["post"])
 def reset():
+    data = request.form
+    db_user = Admin.query.get(data['username'].lower())
+    if db_user:
+        if pwd_context.verify(data["api_key"], db_user.api_key):
+            return("RESETTING DB")
     abort(403)
