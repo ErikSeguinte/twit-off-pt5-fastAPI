@@ -5,6 +5,7 @@ from os import getenv
 
 admin_routes = Blueprint("admit_routes", __name__)
 
+
 @admin_routes.route("/admin/db/reset_confirmation")
 def reset_page():
     password = getenv("db_api_key")
@@ -14,14 +15,14 @@ def reset_page():
     #     "username": username.lower(),
     #     "password": password,
     #     "access granted": pwd_context.verify(password, db_user.api_key)})
-    
+
     return render_template("reset.html")
 
 
 @admin_routes.route("/admin/db/reset", methods=["post"])
 def reset():
     data = request.form
-    db_user = Admin.query.get(data['username'].lower())
+    db_user = Admin.query.get(data["username"].lower())
     if db_user:
         if pwd_context.verify(data["api_key"], db_user.api_key):
             admin_hash = Admin.query.get("admin").api_key
@@ -29,9 +30,9 @@ def reset():
             db.drop_all()
             db.create_all()
             db.session.commit()
-            admin_account = Admin(username="admin", api_key = admin_hash)
+            admin_account = Admin(username="admin", api_key=admin_hash)
             db.session.add(admin_account)
             db.session.commit()
-            return jsonify({'message' :"db reset OK"})
-            
+            return jsonify({"message": "db reset OK"})
+
     abort(403)

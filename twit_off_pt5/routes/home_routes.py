@@ -5,8 +5,9 @@ home_routes = Blueprint("home_routes", __name__)
 
 @home_routes.route("/")
 def index():
-    x = 2+2
-    return redirect(url_for('book_routes.list_books_for_humans'))
+    x = 2 + 2
+    return redirect(url_for("book_routes.list_books_for_humans"))
+
 
 @home_routes.route("/about")
 def about():

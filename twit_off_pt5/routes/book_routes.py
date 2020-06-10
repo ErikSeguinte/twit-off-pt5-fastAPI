@@ -34,4 +34,4 @@ def create_book():
     db.session.add(new_book)
     db.session.commit()
 
-    return redirect(url_for('book_routes.list_books_for_humans'))
+    return redirect(url_for("book_routes.list_books_for_humans"))
