@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block subtitle %}
+    <h3 class="subtitle">Prediction Form</h3>
+{% endblock %}
+
+{% block content %}
+
+    <div class="section">
+        <form action="/predict" method="post">
+            <div class="field">
+                <label class="label">User 1</label>
+                <div class="control">
+                    <input type="text" class="text" name="user_1">
+                </div>
+                <label class="label">User 2</label>
+                <div class="control">
+                    <input type="text" class="text" name="user_2">
+                </div>
+                <label class="label">text</label>
+                <div class="control">
+                    <input type="text" class="text" name="text">
+                </div>
+                <button class="button is-primary">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
