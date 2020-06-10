@@ -38,11 +38,12 @@ def predict():
     new_embedding = basilica.embed_sentence(data['text'], model='twitter')
     result = classifier.predict([new_embedding])
 
-    return str(result)
-
-
-
-    return "TODO: PREDICTING"
+    return render_template("results.html",
+        screen_name_a=user_1.screen_name,
+        screen_name_b=user_2.screen_name,
+        tweet_text=data['text'],
+        screen_name_most_likely= result[0]
+    )
 
 
 @stats_routes.route("/predict_form")
