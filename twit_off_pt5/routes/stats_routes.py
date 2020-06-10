@@ -47,7 +47,9 @@ def predict():
 
 @stats_routes.route("/predict_form")
 def get_usernames():
-    return render_template("predict_form.html")
+    users = User.query.all()
+    usernames = [user.screen_name for user in users]
+    return render_template("predict_form.html", users=usernames)
 
 
 def _get_user(username):
