@@ -13,7 +13,7 @@ pwd_context = CryptContext(
     # Replace this list with the hash(es) you wish to support.
     # this example sets pbkdf2_sha256 as the default,
     # with additional support for reading legacy des_crypt hashes.
-    schemes=["argon2", "pbkdf2_sha256", "des_crypt"],
+    schemes=["pbkdf2_sha256", "des_crypt"],
     # Automatically mark all but first hasher in list as deprecated.
     # (this will be the default in Passlib 2.0)
     deprecated="auto",
