@@ -17,6 +17,7 @@ tweepy = "^3.8.0"
 passlib = "^1.7.2"
 sklearn = "^0.0"
 si = "^0.1.1"
+gunicorn = "^20.0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
