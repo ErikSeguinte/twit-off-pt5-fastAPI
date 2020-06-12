@@ -4,7 +4,6 @@ from flask import Flask
 from pathlib import Path
 
 from twit_off_pt5.routes.home_routes import home_routes
-from twit_off_pt5.routes.book_routes import book_routes
 from twit_off_pt5.routes.twitter_routes import twitter_routes
 from twit_off_pt5.routes.admin_routes import admin_routes
 from twit_off_pt5.routes.stats_routes import stats_routes
