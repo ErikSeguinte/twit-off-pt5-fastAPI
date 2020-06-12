@@ -24,7 +24,7 @@ class Tweet(Model):
     full_text = Column(String(500))
     embedding = Column(db.PickleType)
 
-    user = db.relationship("User", backref=db.backref("tweets", lazy=True))
+    user = db.relationship("User", backref=db.backref("tweets", lazy=True), cascade = "all, delete-orphan", single_parent=True)
 
 
 class Admin(Model):

@@ -27,11 +27,13 @@ def reset():
         if pwd_context.verify(data["api_key"], db_user.api_key):
             admin_hash = Admin.query.get("admin").api_key
 
-            db.drop_all()
-            db.create_all()
-            db.session.commit()
-            admin_account = Admin(username="admin", api_key=admin_hash)
-            db.session.add(admin_account)
+            # db.drop_all()
+            # db.create_all()
+            from twit_off_pt5.core.models import Tweet, User
+            for model in [Tweet, User]:
+                model.__table__.drop(db.engine)
+            for model in [User, Tweet ]:
+                model.__table__.create(db.engine)
             db.session.commit()
             return jsonify({"message": "db reset OK"})
 
