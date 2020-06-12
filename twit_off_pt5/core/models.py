@@ -11,15 +11,6 @@ String = db.String
 BigInteger = db.BigInteger
 
 
-class Book(db.Model):
-    id = Column(Integer, primary_key=True)
-    title = Column(String(128))
-    author_id = Column(String(128))
-
-    def __repr__(self):
-        return f"<Book {self.id} {self.title}>"
-
-
 class User(Model):
     id = Column(BigInteger, primary_key=True)
     screen_name = Column(String(128), nullable=False)
