@@ -44,6 +44,9 @@ def predict():
         screen_name_most_likely=result[0],
     )
 
+def get_model(user_1:int, user_2:int):
+    pass
+
 
 @stats_routes.route("/predict_form")
 def get_usernames():

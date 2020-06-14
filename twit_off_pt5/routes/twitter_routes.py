@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 from twit_off_pt5.core.models import db, User, Tweet
 from twit_off_pt5.services.twitter_service import api as twitter
 from twit_off_pt5.services.basilica_service import connection as basilica
@@ -10,10 +10,13 @@ twitter_routes = Blueprint("twitter_routes", __name__)
 def add_users():
     return render_template("user_form.html")
 
-@twitter_routes.route("/user", methods = ['post'])
+
+@twitter_routes.route("/user", methods=['POST', 'GET'])
 def redirect_user():
-    username = requests.form['username']
-    return redirect(f"/users/{username}")
+    user = request.form['user']
+    url = f"/users/{user}"
+    breakpoint()
+    return redirect(url)
 
 
 @twitter_routes.route("/users/<screen_name>")
