@@ -10,9 +10,16 @@ DB_URI = "postgres://wbakakfzhirkzk:85e2c6305a72c6aef469b01910aae3b0418851188043
 
 engine = create_engine(DB_URI)
 
-SessionLocal=sessionmaker(autocommit=False, autoflash=False, bind=engine)
+SessionLocal=sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Model = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 class User(Model):

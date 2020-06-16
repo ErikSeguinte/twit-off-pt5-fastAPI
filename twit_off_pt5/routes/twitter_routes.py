@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends
 from fastapi.templating import Jinja2Templates
-from core.models import User, Tweet
+from core import models, pydantic_models
 from services.twitter_service import api as twitter
 from services.twitter_service import cursor
+from sqlalchemy.orm import Session
 # from twit_off_pt5.services.basilica_service import connection as basilica
 
 twitter_routes = APIRouter()
@@ -21,6 +22,15 @@ def add_users(request:Request):
 #     breakpoint()
 #     return redirect(url)
 
+@twitter_routes.get("/test/user", response_model=pydantic_models.User)
+def print_user(db:Session = Depends(models.get_db)):
+    sn = "primefactorx01"
+    db_user = get_db_user(db, sn)
+    breakpoint()
+    return db_user
+
+def get_db_user(db:Session, screen_name:str):
+    return db.query(models.User).filter(models.User.screen_name ==screen_name).first()
 
 @twitter_routes.get("/users/{screen_name}")
 def get_user(screen_name=None):
@@ -31,9 +41,9 @@ def get_user(screen_name=None):
         tweet_mode="extended",
         exclude_replies=True,
         exclude_rts=True,
-    ).items(500)]
+    ).items(200)]
 
-    return {'Number of Tweets':len(statuses), "user": user._json, "tweets": statuses}
+    # return {'Number of Tweets':len(statuses), "user": user._json, "tweets": statuses}
 
 #     db_user = User.query.get(user.id) or User(id=user.id)
 #     db_user.screen_name = user.screen_name
