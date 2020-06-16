@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Request, Depends
+from fastapi import APIRouter, Request, Depends, Form, status
 from fastapi.templating import Jinja2Templates
-from core import models, pydantic_models
-from services.twitter_service import api as twitter
-from services.twitter_service import cursor
+from fastapi.responses import RedirectResponse
+from twit_off_pt5.core import models, pydantic_models
+from ..services.twitter_service import api as twitter
+from ..services.twitter_service import cursor
 from sqlalchemy.orm import Session
 # from twit_off_pt5.services.basilica_service import connection as basilica
 
@@ -15,12 +16,11 @@ def add_users(request:Request):
     return templates.TemplateResponse("user_form.html", {"request":request})
 
 
-# @twitter_routes.route("/user", methods=['POST', 'GET'])
-# def redirect_user():
-#     user = request.form['user']
-#     url = f"/users/{user}"
-#     breakpoint()
-#     return redirect(url)
+@twitter_routes.post("/user")
+def redirect_user(user:str = Form("user")):
+    url = f"/users/{user}"
+    response = RedirectResponse(url=url, status_code=status.HTTP_303_SEE_OTHER)
+    return response
 
 @twitter_routes.get("/test/user", response_model=pydantic_models.User)
 def print_user(db:Session = Depends(models.get_db)):
@@ -29,11 +29,12 @@ def print_user(db:Session = Depends(models.get_db)):
     breakpoint()
     return db_user
 
-def get_db_user(db:Session, screen_name:str):
+def get_db_user(db:Session = Depends(models.get_db), screen_name:str = "primefactorx01"):
+    breakpoint()
     return db.query(models.User).filter(models.User.screen_name ==screen_name).first()
 
 @twitter_routes.get("/users/{screen_name}")
-def get_user(screen_name=None):
+def get_user(screen_name=None, db:Session = Depends(models.get_db)):
     print(screen_name)
     user = twitter.get_user(screen_name)
     statuses = [status._json['full_text'] for status in cursor(twitter.user_timeline,
@@ -41,11 +42,11 @@ def get_user(screen_name=None):
         tweet_mode="extended",
         exclude_replies=True,
         exclude_rts=True,
-    ).items(200)]
+    ).items(50)]
 
     # return {'Number of Tweets':len(statuses), "user": user._json, "tweets": statuses}
 
-#     db_user = User.query.get(user.id) or User(id=user.id)
+    db_user = get_db_user(db, screen_name)
 #     db_user.screen_name = user.screen_name
 #     db_user.name = user.name
 #     db_user.location = user.location

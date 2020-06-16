@@ -1,11 +1,12 @@
 __version__ = "0.1.0"
 
-from fastapi import FastAPI, Request, Depends
+from fastapi import FastAPI, Request, Depends, status
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
-from routes.home_routes import home_routes
-from routes.twitter_routes import twitter_routes
+from .routes.home_routes import home_routes
+from .routes.twitter_routes import twitter_routes
 import uvicorn
 
 
@@ -19,8 +20,8 @@ app = FastAPI()
 app.include_router(home_routes)
 app.include_router(twitter_routes)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="twit_off_pt5/static"), name="static")
+templates = Jinja2Templates(directory="twit_off_pt5/templates")
 
 
 @app.get("/test")
@@ -29,7 +30,9 @@ async def root(request: Request):
 
 @app.get("/")
 async def root():
-    return {"message":"OK"}
+    url = app.url_path_for("test")
+    response = RedirectResponse(url=url)
+    return response
 
 
 if __name__ == "__main__":
