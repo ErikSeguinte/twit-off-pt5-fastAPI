@@ -2,6 +2,8 @@ import tweepy
 import os
 from dotenv import load_dotenv
 
+cursor = tweepy.Cursor
+
 load_dotenv()
 
 api_key = os.getenv("twitter_api")
