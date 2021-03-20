@@ -6,7 +6,7 @@ authors = ["Erik Seguinte <erikseguinte@me.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-jinja2 = "^2.11.2"
+jinja2 = "^2.11.3"
 python-dotenv = "^0.13.0"
 requests = "^2.23.0"
 basilica = "^0.2.8"
